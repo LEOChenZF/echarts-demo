@@ -3,7 +3,7 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import "@/styles/index.less"; // global css
-
+import './permission' // permission control
 import globleModule from "./install.js";
 
 import ViewUI from "view-design";

@@ -1,10 +1,9 @@
 <template>
-  <div>
-    <SysMenu />
+  <SysMenu>
     <div class="router-page">
       <router-view></router-view>
     </div>
-  </div>
+  </SysMenu>
 </template>
 <script>
 export default {
@@ -32,9 +31,6 @@ export default {
   }
   .ivu-menu {
     height: 100vh;
-  }
-  .main-page {
-    margin: 20px 20px 0 80px;
   }
 }
 </style>

@@ -1,27 +1,25 @@
 <template>
   <div class="menu-nav">
     <div class="sys-name">
-      <div class="logo">
-        <img class="logo-img" src="@/assets/logo.png" alt="" />
-        <span class="title"> Echarts </span>
-      </div>
-      <div class="top-nav"></div>
-    </div>
-    <Menu :theme="theme" :active-name="pathname">
-      <MenuItem name="/dashboard" to="/">
-        <Icon type="md-document" />
-        Dashboard
-      </MenuItem>
-      <MenuGroup title="柱状图">
-        <MenuItem name="/bar" to="/bar">
+      <Menu :theme="theme" :active-name="pathname">
+        <div class="top-nav">
+          <div class="logo">
+            <img class="logo-img" src="@/assets/logo.png" alt="" />
+            <span class="title"> Echarts </span>
+          </div>
+        </div>
+        <MenuItem name="/dashboard" :to="{ name: 'dashboard' }">
           <Icon type="md-document" />
-          bar
+          Dashboard
         </MenuItem>
-      </MenuGroup>
-    </Menu>
-
-    <div class="main-page">
-      <router-view />
+        <MenuGroup title="柱状图">
+          <MenuItem name="/bar" :to="{ name: 'bar' }">
+            <Icon type="md-document" />
+            bar
+          </MenuItem>
+        </MenuGroup>
+      </Menu>
+      <slot></slot>
     </div>
   </div>
 </template>
@@ -47,27 +45,25 @@ export default {
   position: fixed;
   top: 0;
   left: 0;
+  .logo {
+    width: 240px;
+    height: 49px;
+    font-size: 26px;
+    line-height: 49px;
+    text-align: center;
+    background-color: #fff;
+    .logo-img {
+      width: 35px;
+      vertical-align: middle;
+    }
+  }
+  width: 100%;
   .sys-name {
     width: 100vw;
     display: flex;
-    .logo {
-      width: 283px;
-      height: 49px;
-      font-size: 26px;
-      line-height: 49px;
-      text-align: center;
-      background-color: #eee;
-      .logo-img {
-        width: 35px;
-        vertical-align: middle;
-      }
-    }
-    .top-nav {
-      width: 100%;
-      background-color: #ddd;
-    }
   }
   .ivu-menu {
+    width: 240px;
     height: 100vh;
   }
   .main-page {
