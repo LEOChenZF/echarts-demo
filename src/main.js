@@ -3,13 +3,17 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import "@/styles/index.less"; // global css
-import './permission' // permission control
-import globleModule from "./install.js";
+import "./permission"; // permission control
 
 import ViewUI from "view-design";
 import "view-design/dist/styles/iview.css";
-
-Vue.config.productionTip = false;
+import globleModule from "./install.js";
+// 引入socket
+import SocketService from "@/utils/socketService";
+// 连接Socket
+SocketService.Instance.connect();
+// 挂载Socket到vue
+Vue.prototype.$socket = SocketService.Instance;
 
 // 注册全局组件
 Vue.use(globleModule);
@@ -21,6 +25,7 @@ router.beforeEach((to, from, next) => {
   document.title = to.meta.title;
   next();
 });
+Vue.config.productionTip = false;
 new Vue({
   router,
   store,

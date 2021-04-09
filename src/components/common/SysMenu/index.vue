@@ -18,6 +18,18 @@
             bar
           </MenuItem>
         </MenuGroup>
+        <MenuGroup title="饼状图">
+          <MenuItem name="/pie" :to="{ name: 'pie' }">
+            <Icon type="md-document" />
+            pie
+          </MenuItem>
+        </MenuGroup>
+        <MenuGroup title="折线图">
+          <MenuItem name="/polyline" :to="{ name: 'polyline' }">
+            <Icon type="md-document" />
+            polyline
+          </MenuItem>
+        </MenuGroup>
       </Menu>
       <slot></slot>
     </div>

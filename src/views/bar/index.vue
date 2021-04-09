@@ -9,22 +9,28 @@ import macarons from "@/theme/macarons.js";
 import vintage from "@/theme/vintage.js";
 import chalk from "@/theme/chalk.js";
 import walden from "@/theme/walden.js";
+
+import { resize } from "@/mixins/echarts";
 export default {
   name: "bar",
+  mixins: [resize],
   data() {
-    return {
-      chart: null,
-      option: {
-        legend: {
-          data: ["2011年", "2012年"],
-        },
+    return {};
+  },
+  mounted() {
+    this.initChart();
+    this.getData();
+  },
+  methods: {
+    initChart() {
+      this.chart = echarts.init(this.$refs.bar);
+      const initOption = {
         title: {
           //  left: 'center',
           show: true,
           text: "▍星期统计",
           subtext: "在此测试",
           textStyle: {
-            fontSize: 30,
             textAlign: "middle",
           },
           subtextStyle: {
@@ -33,19 +39,9 @@ export default {
         },
         xAxis: {
           type: "value",
-          boundaryGap: [0, 0.01],
         },
         yAxis: {
           type: "category",
-          data: [
-            "星期一",
-            "星期二",
-            "星期三",
-            "星期四",
-            "星期五",
-            "星期六",
-            "星期天",
-          ],
           axisTick: {
             alignWithLabel: true,
           },
@@ -63,28 +59,32 @@ export default {
           bottom: "3%",
           containLabel: true,
         },
+      };
+      initOption && this.chart.setOption(initOption);
+    },
+
+    getData() {
+      const dataOption = {
+        yAxis: {
+          data: [
+            "星期一",
+            "星期二",
+            "星期三",
+            "星期四",
+            "星期五",
+            "星期六",
+            "星期天",
+          ],
+        },
         series: [
           {
             name: "2011年",
             type: "bar",
-            data: [18203, 23489, 29034, 104970, 131744, 630230,930230],
+            data: [18203, 23489, 29034, 104970, 131744, 630230, 930230],
             showBackground: true,
-            barWidth: "30%",
+            barWidth: "50%",
             itemStyle: {
-              // color: new echarts.graphic.LinearGradient(1, 0, 0, 1, [
-              //   { offset: 0, color: "#83bff6" },
-              //   { offset: 0.5, color: "#188df0" },
-              //   { offset: 1, color: "#188df0" },
-              // ]),
-            },
-          },
-          {
-            name: "2012年",
-            type: "bar",
-            data: [19325, 23438, 31000, 121594, 134141, 681807,935555],
-            showBackground: true,
-            barWidth: "30%",
-            itemStyle: {
+              barBorderRadius: [0, 33, 33, 0],
               // color: new echarts.graphic.LinearGradient(1, 0, 0, 1, [
               //   { offset: 0, color: "#83bff6" },
               //   { offset: 0.5, color: "#188df0" },
@@ -93,16 +93,8 @@ export default {
             },
           },
         ],
-      },
-    };
-  },
-  mounted() {
-    this.getInit();
-  },
-  methods: {
-    getInit() {
-      this.chart = echarts.init(this.$refs.bar, "walden");
-      this.option && this.chart.setOption(this.option);
+      };
+      dataOption && this.chart.setOption(dataOption);
     },
   },
 };
